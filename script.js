@@ -111,10 +111,10 @@ console.log("Average age:", averageAge);
 // Testala con l’array [2, 13, 7, 21, 19] .
 
 async function getBooks(ids) {
-        const promises = ids.map((id) =>
-          fetch(`http://localhost:3333/books/${id}`).then((res) => res.json()),
-        );
-        return Promise.all(promises);
+  const promises = ids.map((id) =>
+    fetch(`http://localhost:3333/books/${id}`).then((res) => res.json()),
+  );
+  return Promise.all(promises);
 }
 
 (async () => {
@@ -125,3 +125,18 @@ async function getBooks(ids) {
     console.error(error);
   }
 })();
+
+// Snack 6 (Bonus)
+//Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
+
+const areThereAvailableBooks = books.some((book) => book.available);
+
+//Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+
+const booksByPrice = [...books].sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
+
+//Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+
+booksByPrice.sort((a, b) => b.available - a.available)
+
+console.log(booksByPrice);
