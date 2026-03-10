@@ -59,25 +59,36 @@ const longBooksTitles = longBooks.map((book) => book.title);
 books.forEach((book) => console.log(book.title));
 longBooksTitles.forEach((title) => console.log(title));
 
-
 // Snack 2
 // Creare un array (availableBooks) che contiene tutti i libri disponibili.
 
-const availableBooks = books.filter(book => book.available)
+const availableBooks = books.filter((book) => book.available);
 
 // Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
 
-const discountedBooks = availableBooks.map(book => (
-    {
-    ...book,
-    price: `${(parseFloat(book.price) * 0.8).toFixed(2)}€`,
-}))
+const discountedBooks = availableBooks.map((book) => ({
+  ...book,
+  price: `${(parseFloat(book.price) * 0.8).toFixed(2)}€`,
+}));
 
 // Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
 
-const fullPricedBook = discountedBooks.find(book => Number.isInteger(parseFloat(book.price)))
+const fullPricedBook = discountedBooks.find((book) =>
+  Number.isInteger(parseFloat(book.price)),
+);
 
+// Snack 3
+//Creare un array (authors) che contiene gli autori dei libri.
 
+const authors = books.map((book) => book.author);
 
+// Crea una variabile booleana (areAuthorsAdults) per verificare se gli autori sono tutti maggiorenni.
+
+const areAuthorsAdults = authors.every((author) => author.age >= 18);
+
+// Ordina l’array authors in base all’età, senza creare un nuovo array.
+//(se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
+
+authors.sort((a, b) => (areAuthorsAdults ? a.age - b.age : b.age - a.age));
 
 
